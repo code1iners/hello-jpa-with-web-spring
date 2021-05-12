@@ -23,7 +23,6 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    @ManyToMany
-    @JoinTable(name = "category_item")
+    @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 }

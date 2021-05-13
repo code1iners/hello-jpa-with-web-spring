@@ -29,7 +29,7 @@ public class MemberRepository {
      * Find member by <b>ID</b>.
      * @return : Member
      */
-    public Member find(Long id) {
+    public Member findById(Long id) {
         return em.find(Member.class, id);
     }
 

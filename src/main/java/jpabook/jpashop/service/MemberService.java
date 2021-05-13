@@ -53,6 +53,6 @@ public class MemberService {
      * @return Just one member.
      */
     public Member findOne(Long memberId) {
-        return memberRepository.find(memberId);
+        return memberRepository.findById(memberId);
     }
 }

@@ -29,7 +29,7 @@ public class ItemRepository {
     }
 
     /**
-     * Find just one item.
+     * <h3>Find just one item.</h3>
      * @param id - ID of item.
      * @return Item
      */
@@ -38,7 +38,7 @@ public class ItemRepository {
     }
 
     /**
-     * Find all items.
+     * <h3>Find all items.</h3>
      * @return All items as list.
      */
     public List<Item> findAll() {

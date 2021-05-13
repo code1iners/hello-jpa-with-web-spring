@@ -114,7 +114,7 @@ public class OrderRepository {
     /**
      * <h3>Query DSL.</h3>
      */
-    public List<Order> getDynamicQuery3(OrderSearch orderSearch) {
-
-    }
+//    public List<Order> getDynamicQuery3(OrderSearch orderSearch) {
+//
+//    }
 }

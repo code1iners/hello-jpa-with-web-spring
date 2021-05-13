@@ -55,4 +55,55 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
+
+    /**
+     * <h3>Create order method.</h3>
+     */
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    /**
+     * Business logics.
+     * <ul>
+     *  <li>Cancel order.</li>
+     * </ul>
+     */
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP) {
+            throw new IllegalStateException("Already delivery is done.");
+        }
+
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem: orderItems) {
+            orderItem.cancel();
+        }
+    }
+
+    /**
+     * Look up logics.
+     * <ul>
+     *  <li>Get total price. (using by Java8)</li>
+     * </ul>
+     */
+    public int getTotalPrice() {
+        // note. Same works.
+//        int totalPrice = 0;
+//        for (OrderItem orderItem: orderItems) {
+//            totalPrice += orderItem.getTotalPrice();
+//        }
+//        return totalPrice;
+
+        return orderItems
+                .stream()
+                .mapToInt(OrderItem::getTotalPrice).sum();
+    }
 }

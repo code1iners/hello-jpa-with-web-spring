@@ -62,7 +62,7 @@ public class OrderService {
         order.cancel();
     }
 
-//    public List<Order> findOrder(ORderSearch oRderSearch) {
+//    public List<Order> findOrder(OrderSearch orderSearch) {
 //        return orderRepository.findAll();
 //    }
 }

@@ -36,9 +36,10 @@ public class OrderRepository {
                 .getResultList();
 
         // note. dynamic query way 1.
-        TypedQuery<Order> query = getDynamicQuery1(orderSearch);
+//        TypedQuery<Order> query = getDynamicQuery1(orderSearch);
 
         // note. dynamic query way 2.
+        TypedQuery<Order> query = getDynamicQuery2(orderSearch);
 
         return query.getResultList();
     }
@@ -85,8 +86,9 @@ public class OrderRepository {
 
     /**
      * <h3>JPA Criteria (Standard).</h3>
+     * @return
      */
-    public List<Order> getDynamicQuery2(OrderSearch orderSearch) {
+    public TypedQuery<Order> getDynamicQuery2(OrderSearch orderSearch) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Order> cq = cb.createQuery(Order.class);
         Root<Order> o = cq.from(Order.class);
@@ -107,8 +109,7 @@ public class OrderRepository {
         }
 
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
-        TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
-        return query.getResultList();
+        return em.createQuery(cq).setMaxResults(1000);
     }
 
     /**
